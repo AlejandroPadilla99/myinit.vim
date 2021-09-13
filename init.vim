@@ -1,3 +1,4 @@
+
 set exrc
 set guicursor=
 set relativenumber
@@ -58,17 +59,35 @@ call plug#begin('~/.nvim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'machakann/vim-sandwich'
 
-    "html 
-    "Plug 'hail2u/vim-css3-syntax'                                                                                           
-    "Plug 'gko/vim-coloresque'                                                                                               
-    "Plug 'tpope/vim-haml'                                                                                                   
-    "Plug 'mattn/emmet-vim'    
+    "{{ Configuring NerdTree
+    Plug 'scrooloose/nerdtree'
+        "---> to hide unwanted files <---
+        let NERDTreeIgnore = [ '__pycache__', '\.pyc$', '\.o$', '\.swp',  '*\.swp',  'node_modules/' ]
+        "---> show hidden files <---
+        let NERDTreeShowHideen=1
+        "---> toggling nerd-tree using Crtl-N <---
+        map<C-n> :NERDTreeToggle<CR>
+    "}}
+    
+    "{{ Configuring fzf
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+        "---> open fzf using Crtl-P <---
+        map<C-p> :Files<Cr>
+        "---> open fzf on botton <---
+        let g:fzf_layout = { 'down': '40%' }
+    "}}
+    
+    "{{ TMux vim integration 
+    Plug 'christoomey/vim-tmux-navigator'
+    "}}
 
 call plug#end()
 
 "theme of nvim
-colorscheme dogrun
-let g:airline_theme='base16_dracula'
+colorscheme gruvbox
+let g:airline_theme='dark_minimal'
+
 
 
 """""""""""""" all this is for Coc work fine
@@ -244,4 +263,3 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 "IndetLine configuration
 let g:indentLine_setColors = 0
-
